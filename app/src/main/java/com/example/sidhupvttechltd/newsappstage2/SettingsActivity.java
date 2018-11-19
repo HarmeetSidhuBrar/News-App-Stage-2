@@ -27,6 +27,9 @@ public class SettingsActivity extends AppCompatActivity {
             Preference pageSize = findPreference(getString(R.string.settings_page_size_key));
             bindPreferenceSummaryToValue(pageSize);
 
+            Preference category = findPreference(getString(R.string.settings_section_news_key));
+            bindPreferenceSummaryToValue(category);
+
         }
 
         private void bindPreferenceSummaryToValue(Preference preference) {

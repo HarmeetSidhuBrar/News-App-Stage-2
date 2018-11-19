@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         String pageSize = sharedPreferences.getString(getString(R.string.settings_page_size_key),getString(R.string.settings_page_size_default));
         String orderBy = sharedPreferences.getString(getString(R.string.settings_order_by_key),getString(R.string.settings_order_by_default));
+        String category = sharedPreferences.getString(getString(R.string.settings_section_news_key), getString(R.string.settings_section_news_default));
 
         Uri baseUri = Uri.parse(REQUEST_URL_STRING);
         Uri.Builder uriBuilder = baseUri.buildUpon();
@@ -99,6 +100,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         uriBuilder.appendQueryParameter("tag","science/science,music/music");
         uriBuilder.appendQueryParameter("page-size",pageSize);
         uriBuilder.appendQueryParameter("order-by",orderBy);
+
+        if (!category.equals(getString(R.string.settings_section_news_default))){
+            uriBuilder.appendQueryParameter("section", category);
+        }
 
         return new NewsLoader(MainActivity.this,uriBuilder.toString());
     }
